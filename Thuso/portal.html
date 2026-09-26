@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thusa — Safety Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" class="toast">
+
+</div>
+<header class="topbar">
+    <div class="brand"><span class="brand-mark">T.</span>
+        <div>
+            <strong>Thusa</strong>
+            <small>Emergency Safety</small>
+    </div>
+</div>
+<div class="top-actions">
+    <span id="welcome"></span>
+        <a class="secondary" href="index.html">Log out</a>
+    </div>
+</header>
+<main class="container">
+<section class="hero">
+<div><p class="eyebrow">SAFETY DASHBOARD</p><h1>One click. One location.<br><span>Help when it matters.</span></h1><p class="sub">Share your GPS location securely with your two trusted contacts during an emergency.</p>
+</div>
+</section>
+<nav class="tabs">
+    <button class="tab active" data-tab="user">Emergency</button>
+    <button class="tab" data-tab="contacts">Trusted contacts</button>
+</nav>
+<section id="user" class="panel tab-panel active">
+    <div class="panel-head"><div>
+        <p class="eyebrow">SOS</p><h2>Emergency control centre</h2>
+    </div>
+    <span id="gpsStatus" class="status-pill neutral">GPS not requested</span></div>
+<div class="sos-card">
+    <div class="pulse-ring">
+        <button id="sosBtn" class="sos">SOS<br><small>EMERGENCY</small>
+        </button>
+    </div>
+    <h3>Press SOS if you are in danger.</h3><p>Your location will be captured and displayed immediately. Any trusted contacts you have added will also receive a secure emergency link.</p>
+</div>
+<div class="grid-3">
+    <div class="card">
+        <b><ion-icon name="location"></ion-icon>Current location</b><p id="locationText">Not shared</p>
+</div>
+<div class="card">
+    <b><ion-icon name="people-circle"></ion-icon>Trusted contacts</b><p id="contactSummary">Loading…</p>
+</div>
+<div class="card">
+    <b><ion-icon name="alert"></ion-icon>Emergency status</b><p id="userStatus">No active emergency</p>
+</div>
+</div>
+<div id="activeBox" class="card hidden">
+    <div class="active-head">
+        <div><p class="eyebrow">LIVE INCIDENT</p>
+            <h3 id="emergencyId"></h3>
+        </div>
+        <span class="status-pill active">ACTIVE</span>
+    </div>
+    <div id="mapUser" class="map">
+
+    </div>
+    <div class="detail-grid">
+        <div>
+            <small>Started</small>
+            <strong id="emergencyTime">—</strong>
+        </div>
+        <div>
+            <small>GPS accuracy</small>
+            <strong id="accuracy">—</strong>
+        </div>
+    </div>
+    <div id="notificationLinks" class="notice">
+
+    </div>
+    <button id="cancelBtn" class="danger-outline">DEACTIVATE SOS</button>
+</div>
+<div class="card">
+    <div class="section-title">
+        <h3>Recent emergency history</h3>
+        <button class="ghost" id="refreshBtn">Refresh</button>
+    </div>
+    <div id="history">
+
+    </div>
+</div>
+</section>
+<section id="contacts" class="panel tab-panel">
+    <div class="panel-head">
+        <div>
+            <p class="eyebrow"><ion-icon name="people-circle-outline"></ion-icon>TRUSTED CONTACTS</p>
+            <h2>Emergency contacts</h2>
+        </div>
+    </div>
+    <div class="card">
+        <form id="contactForm">
+            <div class="grid-3">
+                <div class="form-group">
+                    <label><ion-icon name="person"></ion-icon>Name</label>
+                    <input id="contactName" required>
+                </div>
+                <div class="form-group">
+                    <label><ion-icon name="call"></ion-icon>Phone</label>
+                    <input id="contactPhone" type="tel">
+                </div>
+                <div class="form-group">
+                    <label><ion-icon name="mail"></ion-icon>Email</label>
+                    <input id="contactEmail" type="email">
+                </div>
+            </div>
+            <button class="primary" type="submit">Add Contact</button>
+        </form>
+        <div id="contactsList">
+
+        </div>
+    </div>
+</section>
+</main>
+<footer>Thusa — It never exposes emergency locations publicly.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

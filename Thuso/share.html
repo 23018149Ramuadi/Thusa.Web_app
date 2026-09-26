@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thusa — Emergency Location</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+<div class="brand">
+    <span class="brand-mark">T.</span>
+    <div>
+        <strong>Thusa</strong>
+        <small>Private emergency link</small>
+    </div>
+</div>
+</header>
+<main class="container">
+    <section class="panel active">
+        <div class="panel-head">
+            <div>
+                <p class="eyebrow">TRUSTED CONTACT ALERT</p>
+                <h2 id="title">Loading emergency…</h2>
+            </div>
+            <span id="badge" class="status-pill active">CHECKING</span>
+        </div>
+        <div id="error" class="notice hidden">
+
+        </div>
+        <div id="content" class="hidden">
+            <p id="details"></p>
+            <div id="shareMap" class="map tall">
+
+            </div>
+            <div class="button-row">
+                <a id="call" class="primary">Call user</a>
+                <a class="secondary" href="tel:112">Call emergency services (112)</a>
+            </div>
+            <p class="notice">This private link contains sensitive location information. Do not forward it.</p>
+        </div>
+    </section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+
+</script>
+<script>
+const token=new URLSearchParams(location.search).get('token');
+(async()=>{try{const r=await fetch('/api/share/'+encodeURIComponent(token||''));
+const d=await r.json();
+if(!r.ok)throw new Error(d.error);
+const i=d.incident;document.getElementById('title').textContent=`Emergency ${i.id}`;
+document.getElementById('badge').textContent=i.status;
+document.getElementById('details').textContent=`${i.userName} activated SafeHer at ${new Date(i.createdAt).toLocaleString()}. GPS accuracy: ${Math.round(i.accuracy||0)} m.`;
+document.getElementById('call').href='tel:'+i.userPhone;document.getElementById('content').classList.remove('hidden');const m=L.map('shareMap').setView([i.lat,i.lng],16);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(m);L.marker([i.lat,i.lng]).addTo(m).bindPopup('Emergency location').openPopup();}catch(e){const el=document.getElementById('error');el.textContent=e.message||'Unable to open emergency link.';
+el.classList.remove('hidden');
+document.getElementById('badge').textContent='UNAVAILABLE';
+}
+}
+)
+();
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

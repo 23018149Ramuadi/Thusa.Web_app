@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Register | SafeHer</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <main class="auth-page">
+            <section class="auth-card">
+                <div class="brand"><span class="brand-mark">T.</span>
+                    <h1>Thusa</h1>
+                </div><p class="tagline">One Click. One Location.</p>
+                <h2>Create account</h2>
+                <p class="description">Register to access your Thusa safety dashboard.</p>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="fullName"><ion-icon name="person"></ion-icon>Full name</label>
+                        <input id="fullName" required autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone"><ion-icon name="call"></ion-icon>Phone number</label>
+                        <input id="phone" type="tel" required autocomplete="tel" placeholder="e.g. 071 234 5678">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><ion-icon name="mail"></ion-icon>Email address</label>
+                        <input id="email" type="email" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><ion-icon name="lock-closed"></ion-icon>Password</label>
+                        <div class="password-wrap">
+                            <input id="password" type="password" minlength="6" required autocomplete="new-password">
+                            <button class="toggle" type="button" data-toggle="password"></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword"><ion-icon name="lock-closed"></ion-icon>Confirm password</label>
+                        <div class="password-wrap">
+                            <input id="confirmPassword" type="password" minlength="6" required autocomplete="new-password">
+                            <button class="toggle" type="button" data-toggle="confirmPassword"></button>
+                        </div>
+                    </div>
+                    <label class="terms">
+                        <input id="terms" type="checkbox" required> I agree to the terms and privacy notice.</label>
+                        <div id="message" class="message">
+                        </div>
+                        <button class="primary" type="submit">Create Account</button>
+                    </form>
+                    <div class="divider">Already registered?</div>
+                    <a class="secondary" href="login.html">Login</a>
+                </section>
+            </main>
+            <script src="register.js"></script>
+            <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+        </body>
+        </html>
